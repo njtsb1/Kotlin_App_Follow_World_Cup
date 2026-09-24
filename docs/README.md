@@ -1,184 +1,67 @@
 # Creating a Kotlin App to Follow the World Cup
 
-Project developed during the Santander Bootcamp 2023 - Mobile Android with Kotlin, under the guidance of experts [Pedro Silva](https://github.com/pedrox-hs "Pedro Silva"), [Ezequiel Messore](https://github.com/EzequielMessore "Ezequiel Messore"), [Igor Rotondo Bagliotti](https://github.com/igorbag "Igor Rotondo Bagliotti") e [Venilton FalvoJr](https://github.com/falvojr "Venilton FalvoJr").
+Project developed during the Santander Bootcamp 2023 - Mobile Android with Kotlin, under the guidance of experts [Pedro Silva](https://github.com), [Ezequiel Messore](https://github.com), [Igor Rotondo Bagliotti](https://github.com), and [Venilton FalvoJr](https://github.com).
 
-Learn how to create an app featuring a schedule and notifications for Brazil's World Cup matches. To do this, explore key Android Jetpack features and best practices for native Android app development.
+This repository contains a native Android application built with clean architecture principles to track match schedules and manage push notifications using WorkManager. It also includes an isolated web interface prototype mapping the same workflows.
 
 ## Features
 
-- Responsive layout with semantic HTML and accessible controls.
-- Dark / Light mode with moon/sun icons (dark is default).
-- Multilanguage support: **EN-US** (default), **PT-BR**, **ES**.
-- Matches rendered from a JSON-like data structure.
-- Notify toggle per match (state persisted in `localStorage`).
-- Keyboard accessible and screen-reader friendly.
+- **Match Schedule API**: Fetches live match schedules and details from a public JSON API endpoint.
+- **Local Push Notifications**: Automated match reminders scheduled via WorkManager.
+- **Clean Architecture & Modules**: Modularized codebase splitting concerns across App, Data, Domain, and Notification Scheduler layers.
+- **Jetpack Compose UI**: Modern declarative UI design using Material 3 guidelines.
+- **Multi-language Support**: Full support for English (EN-US), Portuguese (PT-BR), and Spanish (ES).
+- **Web Interface Standalone**: An accessible, responsive HTML/JS interface prototype that mimics the mobile application core business logic.
 
-## Tecnologies
+## Project Architecture & Modules
 
-## Mobile & Core
+The Android codebase is structured into highly cohesive and decoupled feature modules:
 
-- **Kotlin**: modern, concise, null-safe language used throughout the app for expressive and safe code.
+- **`:app`**: Application entrypoint, Dependency Injection configuration, ViewModels, and Jetpack Compose screens (`MainScreen.kt`).
+- **`:domain`**: Pure business logic containing models and core use cases:
+  - `GetMatchesUseCase.kt` (Fetch and filter schedules)
+  - `EnableNotificationUseCase.kt` (Register match reminder)
+  - `DisableNotificationUseCase.kt` (Cancel match reminder)
+- **`:data`**: Outlines repository implementations and orchestrates two distinct data sources:
+  - `local`: SQLite persistence abstraction layer using **Room Database**.
+  - `remote`: REST API HTTP client implementation powered by **Retrofit**.
+- **`:notification-scheduler`**: Feature module handling persistent background scheduling using **WorkManager** to trigger push notifications right before matches start.
 
-## Assistive & Acessibility
+## Tech Stack & Production Dependencies
 
-- **AI (Assistive)**: optional companion features that demonstrate simple AI-powered helpers (e.g., smart reminders, localized suggestions) integrated as non-critical enhancements.
+- **Language**: Kotlin (Coroutines, KTX)
+- **UI Framework**: Jetpack Compose (Material 3, Coil Compose for image caching)
+- **Architecture**: MVI / MVVM Pattern with Jetpack Lifecycle ViewModels
+- **Dependency Injection**: Dagger Hilt
+- **Local Storage**: Room Database
+- **Networking**: Retrofit + Moshi / OkHttp
+- **Background Processing**: WorkManager
 
-### Additional
+## Companion Web Prototype Stack
+- **HTML5 & CSS3**: Responsive markup framework with native CSS variables for theme states.
+- **JavaScript & Web Share**: Front-end logic managing mock UI strings, theme persistence, and local mock states via `localStorage`.
 
-- **HTML5**: main markup and templates.
-- **CSS3**: responsive styles and theme variables.
-- **JavaScript**: rendering, theme & language logic, local persistence.
+## How to Run & Setup
 
-## Setup
+### 1. Android Application (Native Production)
+1. Open Android Studio (Flamingo or later).
+2. Import this project using the local Gradle wrapper.
+3. Allow the project to sync and fetch all required dependencies.
+4. Select an active emulator or physical device (API 21+) and run the **`app`** module.
+*(Note: Android 13+ requires accepting the explicit `POST_NOTIFICATIONS` runtime prompt to fire local push notifications).*
 
-1. Clone or copy files into a folder.
-2. Create an `assets/` folder at the project root and add stadium images:
-   - `assets/luz-stadium.png`
-   - `assets/dragon-stadium.png`
-   - (use your own images; filenames must match those referenced in `script.js`)
-3. Open `index.html` in a browser (no build step required).
+### 2. Web Interface Demo (Standalone)
+1. Add required stadium images inside a root `/assets` folder matching the filenames defined in `script.js`.
+2. Open `index.html` directly in any modern web browser.
 
-## Accessibility & Best Practices
+## Testing & Quality Assurance
 
-- Uses semantic elements (`header`, `main`, `section`, `article`, `footer`).
-- Skip link for keyboard users.
-- Buttons use `aria-pressed` and `aria-label`.
-- Live region announces notification toggle changes.
-- Focusable cards and keyboard handlers for Enter/Space.
-- Respects `prefers-color-scheme` and persists user theme choice.
+- **Unit Tests**: Coverage for use cases, data mapping, and repository logic using JUnit4 and MockK.
+- **WorkManager Testing**: Validated execution delays using `androidx.work:work-testing`.
+- **UI Tests**: Isolated Compose component testing via `androidx.compose.ui:ui-test-junit4`.
 
-## Customization
+![Project Screenshot](assets/screenshot_web_demo.png)
 
-- Replace `matchesData` in `script.js` with your own JSON or fetch from an API.
-- Adjust `i18n` object to add or refine translations.
-- Add real notification scheduling (Service Worker / Push API) if needed - this demo only toggles state locally.
-
-## Design Challenge (Lab)
-
-- Explore the base project and understand its modules and responsibilities:
-  - **app**: Contains the application-level classes and scaffolding that tie the rest of the codebase together. The "app" module depends on all necessary feature modules and core modules;
-  - **data**: An abstraction for data source access, organized as follows:
-        - ***data***: This module declares the "remote" and "local" DataSources, as well as repository implementations based on the required business logic;
-        - ***local***: Contains a [Room](https://developer.android.com/training/data-storage/room) implementation serving as the local data source;
-        - ***remote***: Implementation of a remote data source using [Retrofit](https://square.github.io/retrofit/) as the HTTP client.
-  - **domain**: This module declares the application's use cases (functionalities);
-  - **notification-scheduler**: A module dedicated to creating notifications using WorkManager.
-- Create the use cases for the following features:
-  - Search Matches: `GetMatchesUseCase.kt`;
-  - Enable Notification: `EnableNotificationUseCase.kt`;
-  - Disable Notification: `DisableNotificationUseCase.kt`.
-- Create `MainViewModel.kt` to orchestrate interactions with `MainActivity.kt`;
-- Create `MainScreen.kt` to build the UI using Jetpack Compose;
-- Integrate the ViewModel and Activity by observing state;
-- Finally, create the WorkManager to orchestrate local push notifications.
-
-## Modules
-
-- **app** - Application entrypoint, UI, activities, Compose screens.
-- **data** - Data layer with `remote` (Retrofit) and `local` (Room) implementations and repository wiring.
-  - `data` (root): repository implementations and data sources.
-  - `data/local`: Room entities, DAOs, database.
-  - `data/remote`: Retrofit DTOs and API client.
-- **domain** - Business models and use cases (GetMatches, EnableNotification, DisableNotification).
-- **notification-scheduler** - WorkManager worker and scheduling helpers.
-
-## Key Features
-
-- Fetch matches from a JSON API (or local asset).
-- Display matches with stadium images using Coil.
-- Schedule local notifications using WorkManager (notify X minutes before match).
-- Toggle notifications per match.
-- Clean separation of concerns with use cases and repository pattern.
-
-## Requirements
-
-- Android Studio Flamingo or later
-- JDK 11+
-- Gradle 7.4+ (wrapper included)
-- Minimum SDK: 21
-- Target SDK: latest stable
-
-## Setup & Run
-
-1. **Clone repository**
-
-    ```bash
-    git clone <repo-url>
-    cd world-cup-tracker
-    ```
-
-2. Open in Android Studio
-
-    - Import the project using the Gradle wrapper.
-    - Let Android Studio sync and download dependencies.
-
-3. Configure API / JSON
-
-    - By default the app can read a local ``api.json`` in ``app/src/main/assets/``.
-    - To use a remote endpoint, update the Retrofit base URL in the data/remote module.
-
-4. Run
-
-    - Select an emulator or device and run the ``app`` module.
-
-## WorkManager Notifications
-
-- Notifications are scheduled with a ``OneTimeWorkRequest`` that runs at ``matchTime - notifyBeforeMinutes``.
-- Use a unique work name per match (e.g., ``match_notification_unique_<matchId>``) to allow replace/cancel behavior.
-- The ``NotificationWorker`` builds and posts a local notification using ``NotificationManager``.
-- Important: Request runtime notification permission on Android 13+ (``POST_NOTIFICATIONS``) before scheduling.
-
-## Dependencies (high level)
-
-- Kotlin stdlib
-- AndroidX Core, AppCompat
-- Jetpack Compose (material3)
-- Lifecycle (ViewModel, SavedState)
-- Hilt (DI)
-- Retrofit + Moshi / Gson
-- OkHttp
-- Room (runtime, ktx, compiler)
-- WorkManager
-- Coil Compose (image loading)
-- Coroutines (core, android)
-- Timber (optional logging)
-
-Example Gradle (app-level) snippet:
-
-```bash
-implementation "androidx.core:core-ktx:1.10.1"
-implementation "androidx.compose.ui:ui:1.5.0"
-implementation "androidx.compose.material3:material3:1.1.0"
-implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
-implementation "com.google.dagger:hilt-android:2.47"
-kapt "com.google.dagger:hilt-compiler:2.47"
-implementation "com.squareup.retrofit2:retrofit:2.9.0"
-implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
-implementation "androidx.room:room-runtime:2.6.1"
-kapt "androidx.room:room-compiler:2.6.1"
-implementation "androidx.work:work-runtime-ktx:2.8.1"
-implementation "io.coil-kt:coil-compose:2.4.0"
-implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3"
-```
-
-## Testing
-
-- Unit test use cases and repository logic with JUnit and Mockito / MockK.
-- Use ``androidx.work:work-testing`` to test WorkManager scheduling.
-- Compose UI tests with ``androidx.compose.ui:ui-test-junit4``.
-
-## Notes & Best Practices
-
-- Use ``Instant`` for timestamps and convert to local timezone for display.
-- Persist user notification preferences in Room or DataStore so toggles survive restarts.
-- Use ``enqueueUniqueWork`` with ``ExistingWorkPolicy.REPLACE`` to update scheduled notifications.
-- Handle edge cases: past match times, device reboot (WorkManager persists across reboots), and permission denial.
-
-GitHub Pages: [https://digitalinnovationone.github.io/copa-2022-android/api.json](https://digitalinnovationone.github.io/copa-2022-android/api.json), a pseudo-API created to facilitate the app's integration workflow.
-
-If you have difficulty performing them on your own, feel free to consult her:
-**[Android Mobile Week #2: Learn How to Create an App with a Schedule and Notifications for Brazil's World Cup Matches](https://youtu.be/30ZiJmCWliI)**
-
-![screenshot web demo](assets/screenshot_web_demo.png)
+See [original repository](https://github.com/digitalinnovationone/copa-2022-android/tree/feature/base-project).
 
 [LICENSE](/LICENSE)
