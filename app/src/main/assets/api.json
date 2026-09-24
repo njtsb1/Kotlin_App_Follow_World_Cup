@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Round 1",
+    "stadium": {
+      "name": "Dragon Stadium",
+      "image": "assets/dragon-stadium.png"
+    },
+    "team1": "🇧🇷",
+    "team2": "🇷🇸",
+    "date": "2030-06-14T17:00:00Z"
+  },
+  {
+    "name": "Round 2",
+    "stadium": {
+      "name": "Luz Stadium",
+      "image": "assets/luz-stadium.png"
+    },
+    "team1": "🇧🇷",
+    "team2": "🇨🇭",
+    "date": "2030-06-20T20:00:00Z"
+  },
+  {
+    "name": "Round 3",
+    "stadium": {
+      "name": "Dragon Stadium",
+      "image": "assets/dragon-stadium.png"
+    },
+    "team1": "🇨🇲",
+    "team2": "🇧🇷",
+    "date": "2030-06-25T17:00:00Z"
+  },
+  {
+    "name": "Round of 32",
+    "stadium": {
+      "name": "Luz Stadium",
+      "image": "assets/luz-stadium.png"
+    },
+    "team1": "🇦🇷",
+    "team2": "🇧🇷",
+    "date": "2030-07-04T16:00:00Z"
+  },
+  {
+    "name": "Round of 16",
+    "stadium": {
+      "name": "Dragon Stadium",
+      "image": "assets/dragon-stadium.png"
+    },
+    "team1": "🇧🇷",
+    "team2": "🇮🇹",
+    "date": "2030-07-08T16:00:00Z"
+  },
+  {
+    "name": "Quarter-finals",
+    "stadium": {
+      "name": "Luz Stadium",
+      "image": "assets/luz-stadium.png"
+    },
+    "team1": "🇫🇷",
+    "team2": "🇧🇷",
+    "date": "2030-07-12T16:00:00Z"
+  },
+  {
+    "name": "Semi-finals",
+    "stadium": {
+      "name": "Dragon Stadium",
+      "image": "assets/dragon-stadium.png"
+    },
+    "team1": "🇧🇷",
+    "team2": "🇩🇪",
+    "date": "2030-07-16T16:00:00Z"
+  },
+  {
+    "name": "Final",
+    "stadium": {
+      "name": "Luz Stadium",
+      "image": "assets/luz-stadium.png"
+    },
+    "team1": "🇧🇷",
+    "team2": "🇪🇸",
+    "date": "2030-07-21T16:00:00Z"
+  }
+]
