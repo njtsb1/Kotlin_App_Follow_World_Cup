@@ -1,6 +1,6 @@
 # Creating a Kotlin App to Follow the World Cup
 
-Project developed during the Santander Bootcamp 2023 - Mobile Android with Kotlin, under the guidance of experts [Pedro Silva](https://github.com), [Ezequiel Messore](https://github.com), [Igor Rotondo Bagliotti](https://github.com), and [Venilton FalvoJr](https://github.com).
+Project developed during the Santander Bootcamp 2023 - Mobile Android with Kotlin, under the guidance of experts [Pedro Silva](https://github.com/pedrox-hs "Pedro Silva"), [Ezequiel Messore](https://github.com/EzequielMessore "Ezequiel Messore"), [Igor Rotondo Bagliotti](https://github.com/igorbag "Igor Rotondo Bagliotti") e [Venilton FalvoJr](https://github.com/falvojr "Venilton FalvoJr").
 
 This repository contains a native Android application built with clean architecture principles to track match schedules and manage push notifications using WorkManager. It also includes an isolated web interface prototype mapping the same workflows.
 
@@ -38,12 +38,14 @@ The Android codebase is structured into highly cohesive and decoupled feature mo
 - **Background Processing**: WorkManager
 
 ## Companion Web Prototype Stack
+
 - **HTML5 & CSS3**: Responsive markup framework with native CSS variables for theme states.
 - **JavaScript & Web Share**: Front-end logic managing mock UI strings, theme persistence, and local mock states via `localStorage`.
 
 ## How to Run & Setup
 
 ### 1. Android Application (Native Production)
+
 1. Open Android Studio (Flamingo or later).
 2. Import this project using the local Gradle wrapper.
 3. Allow the project to sync and fetch all required dependencies.
@@ -51,6 +53,7 @@ The Android codebase is structured into highly cohesive and decoupled feature mo
 *(Note: Android 13+ requires accepting the explicit `POST_NOTIFICATIONS` runtime prompt to fire local push notifications).*
 
 ### 2. Web Interface Demo (Standalone)
+
 1. Add required stadium images inside a root `/assets` folder matching the filenames defined in `script.js`.
 2. Open `index.html` directly in any modern web browser.
 
