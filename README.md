@@ -132,4 +132,6 @@ If you have difficulty performing them on your own, feel free to consult her:
 
 ![screenshot web demo](docs/assets/screenshot_web_demo.png)
 
+See [original repository](https://github.com/digitalinnovationone/copa-2022-android/tree/feature/base-project).
+
 [LICENSE](/LICENSE)
