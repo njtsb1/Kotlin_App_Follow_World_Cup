@@ -17,11 +17,11 @@ Learn how to create an app featuring a schedule and notifications for Brazil's W
 
 ## Mobile & Core
 
-- **Kotlin**: (TO DO - preencher com a utilização da tecnologia Kotlin no projeto - em inglês)
+- **Kotlin**: modern, concise, null-safe language used throughout the app for expressive and safe code.
 
 ## Assistive & Acessibility
 
-- **AI (Assistive)**: (TO DO - preencher com a utilização da tecnologia IA Assistiva no projeto - em inglês)
+- **AI (Assistive)**: optional companion features that demonstrate simple AI-powered helpers (e.g., smart reminders, localized suggestions) integrated as non-critical enhancements.
 
 ### Additional
 
