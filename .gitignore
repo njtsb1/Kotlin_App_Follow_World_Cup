@@ -1,0 +1,58 @@
+# Android / Kotlin
+.gradle/
+/local.properties
+/.idea/
+/build/
+/captures/
+/.externalNativeBuild/
+.cxx/
+*.iml
+*.hprof
+
+# Kotlin/Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Android Studio
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Keystore files
+*.jks
+*.keystore
+
+# Generated files
+app/src/main/res/generated/
+**/build/
+
+# Log files
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# JetBrains
+out/
+
+# Kotlin specific
+*.kotlin_module
+
+# IntelliJ
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Misc
+.vscode/
+*.swp
