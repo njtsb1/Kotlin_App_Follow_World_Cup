@@ -6,7 +6,7 @@ const STORAGE = {
 
 const matchesData = [
   {
-    "name": "Round1",
+    "name": "Round 1",
     "stadium": { "name": "Dragon Stadium", "image": "assets/dragon-stadium.png" },
     "team1": "🇧🇷",
     "team2": "🇷🇸",
