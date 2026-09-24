@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>World Cup 2030</title>
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="brand" aria-hidden="true">
+        <h1>World Cup 2030</h1>
+      </div>
+
+      <div class="controls" role="toolbar" aria-label="App controls">
+        <div class="lang-switch" aria-label="Language selector">
+          <label for="lang" class="visually-hidden">Language</label>
+          <select id="lang" name="lang" aria-label="Select language">
+            <option value="en-US">English (EN-US)</option>
+            <option value="pt-BR">Português (PT-BR)</option>
+            <option value="es">Español (ES)</option>
+          </select>
+        </div>
+
+        <button id="themeToggle" class="theme-toggle" aria-pressed="true" aria-label="Toggle dark mode">
+          <!-- Moon icon (dark) and Sun icon (light) are toggled by CSS/JS -->
+          <svg class="icon moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+          </svg>
+          <svg class="icon sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M6.76 4.84l-1.8-1.79L3.17 4.84l1.79 1.8 1.8-1.8zM1 13h3v-2H1v2zm10 9h2v-3h-2v3zm7.03-2.03l1.79 1.79 1.79-1.79-1.79-1.79-1.79 1.79zM20 11v2h3v-2h-3zM4.22 19.78l1.79-1.79-1.79-1.79-1.79 1.79 1.79 1.79zM12 6a6 6 0 100 12 6 6 0 000-12z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <p class="header-sub" id="header-sub">Track matches and enable reminders</p>
+  </header>
+
+  <main id="main" class="main" role="main">
+    <section class="matches" aria-labelledby="matches-title">
+      <h2 id="matches-title">Matches</h2>
+      <ul id="matchesList" class="matches-list" role="list" aria-live="polite"></ul>
+    </section>
+
+    <aside class="legend" aria-labelledby="legend-title">
+      <h3 id="legend-title">Legend</h3>
+      <p id="legend-text">Tap Notify to toggle a local reminder.</p>
+    </aside>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p id="footer-text">Developed by Nivaldo Beirão</p>
+  </footer>
+
+  <template id="match-template">
+    <li class="match-card" role="listitem">
+      <article class="card" tabindex="0">
+        <div class="card-media" aria-hidden="true"></div>
+        <div class="card-body">
+          <header class="card-header">
+            <h4 class="match-name"></h4>
+            <time class="match-date" datetime=""></time>
+          </header>
+
+          <div class="teams" aria-label="Teams">
+            <div class="team team-left">
+              <span class="team-code"></span>
+            </div>
+            <div class="versus" aria-hidden="true">×</div>
+            <div class="team team-right">
+              <span class="team-code-right"></span>
+            </div>
+          </div>
+
+          <div class="card-actions">
+            <button class="notify-btn" aria-pressed="false">Notify</button>
+            <span class="stadium" aria-hidden="true"></span>
+          </div>
+        </div>
+      </article>
+    </li>
+  </template>
+
+  <script src="./src/script.js" defer></script>
+</body>
+</html>
